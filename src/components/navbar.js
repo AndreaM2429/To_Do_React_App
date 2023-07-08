@@ -1,30 +1,66 @@
-import { useState, useRef } from "react";
-import { useOnClickOutside } from "./useOnClickOutside";
+import { NavLink, useNavigate  } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
+import React from "react";
+
+const links = [
+  { path: '/', text: 'Home' },
+  { path: 'about', text: 'About' },
+  { path: 'profile', text: 'Profile' },
+  { path: 'login', text: 'Login' },
+];
 
 const Navbar = () => {
-  const [dropdown, setDropdown] = useState(false);
+  const { user, logout } = useAuthContext();
+  const navigate = useNavigate();
 
-  const ref = useRef();
-
-  useOnClickOutside(ref, dropdown, () => setDropdown(false));
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   return (
-    <nav>
-      <ul>
-        <li>Home</li>
-        <li>About</li>
-        <li ref={ref}>
-          <button onClick={() => setDropdown((prev) => !prev)}>
-            Services <span>&#8595;</span>
-          </button>
-          {dropdown && (
-          <ul>
-            <li>Design</li>
-            <li>Development</li>
-          </ul> )}
-        </li>
-      </ul>
-    </nav>
+    <>
+      <nav className="navbar">
+  <ul>
+    {links.map((link) => {
+      return (
+        <React.Fragment key={link.text}>
+          {link.path === 'login' ? (
+            !user && (
+              <li>
+                <NavLink to={link.path}>{link.text}</NavLink>
+              </li>
+            )
+          ) : link.path === 'profile' ? (
+            user && (
+              <li>
+                <NavLink to={link.path}>
+                  {link.text}
+                </NavLink>
+              </li>
+            )
+          ) : (
+            <li>
+              <NavLink to={link.path}>{link.text}</NavLink>
+            </li>
+          )}
+        </React.Fragment>
+      );
+    })}
+    {!user && (
+      <li className="log-in">
+        <span>Log in to edit to-dos</span>
+      </li>
+    )}
+  </ul>
+</nav>
+{user && (
+  <div className="logout">
+    <p>{user}</p>
+      {<button onClick={handleLogout}>Logout</button>}
+  </div>
+)}
+    </>
   );
 };
 
