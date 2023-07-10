@@ -7,28 +7,26 @@ import NotMatch from '../routes/NotMatch';
 import Layout from './Layout';
 import SinglePage from '../routes/SinglePage';
 import ProtectedRoute from './ProtectedRoute';
-    
-const TodoApp = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="about" element={<About />}>
-          <Route path=":slug" element={<SinglePage />} />
-        </Route>
-        <Route path="login" element={<Login />} />
-        <Route 
-          path="profile" 
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<NotMatch />} />
+
+const TodoApp = () => (
+  <Routes>
+    <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Home />} />
+      <Route path="about" element={<About />}>
+        <Route path=":slug" element={<SinglePage />} />
       </Route>
-    </Routes>
-  );
-};
+      <Route path="login" element={<Login />} />
+      <Route
+        path="profile"
+        element={(
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+          )}
+      />
+      <Route path="*" element={<NotMatch />} />
+    </Route>
+  </Routes>
+);
 
 export default TodoApp;

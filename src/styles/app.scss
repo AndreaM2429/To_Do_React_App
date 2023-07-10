@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: "Segoe UI", sans-serif;
   line-height: 1.4;
@@ -25,7 +26,7 @@ body {
 .form-container {
   display: flex;
   border-radius: calc(0.1 * 100px);
-  box-shadow: 0px 4px 14px 0px rgba(70, 70, 70, 0.38);
+  box-shadow: 0 4px 14px 0 rgba(70, 70, 70, 0.38);
   justify-content: space-around;
   background: #fff;
   font-size: 1rem;
@@ -76,39 +77,52 @@ a {
   color: #005bb3;
 }
 
-/*==========================
-About route 
-========================*/
+/* ==========================
+About route
+======================== */
 .about {
   max-width: 1000px;
   margin: 0 auto;
 }
+
 .about_list {
   list-style: none;
 }
+
 .about_list a {
   padding: 20px 0;
   display: inline-block;
   text-decoration: none;
   font-weight: bold;
 }
+
+.menu-nav li a,
+.menu-nav li span {
+  display: block;
+  padding: 1rem;
+}
+
 .about_list a:hover {
   color: #005bb3;
 }
+
 .main_content {
   max-width: 650px;
 }
+
 .main_content h2 {
   margin-bottom: 15px;
   line-height: 30px;
   font-size: 26px;
 }
+
 .main_content p {
   line-height: 25px;
 }
-/*==========================
+
+/* ==========================
 Sidebar navigation
-========================*/
+======================== */
 
 .navbar {
   position: relative;
@@ -116,7 +130,7 @@ Sidebar navigation
 
 button {
   cursor: pointer;
-  background: transparent;;
+  background: transparent;
   border: none;
   font-size: 20px;
 }
@@ -126,7 +140,7 @@ button {
   left: 30px;
   top: 40px;
   cursor: pointer;
-  background: transparent;;
+  background: transparent;
   border: none;
 }
 
@@ -141,20 +155,13 @@ button {
   z-index: 9;
   font-size: 18px;
   box-shadow: 0 10px 15px -3px rgb(46 41 51 / 8%), 0 4px 6px -2px rgb(71 63 79 / 16%);
-
   transform: translateX(-100px);
   transition: transform ease-in-out 0.2s;
-  /* transition: width ease 0.2s; */
 }
 
 .menu-nav.show-menu {
   width: 100%;
-  transform: translateX(0px);
-}
-
-.menu-nav li a, .menu-nav li span {
-  display: block;
-  padding: 1rem;
+  transform: translateX(0);
 }
 
 .log-in {
@@ -174,7 +181,6 @@ button {
   font-size: 20px;
   color: #8a4baf;
 }
-
 
 /* Media Queries */
 @media screen and (min-width: 480px) {
